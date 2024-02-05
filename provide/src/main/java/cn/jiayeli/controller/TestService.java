@@ -1,22 +1,22 @@
 package cn.jiayeli.controller;
 
+import cn.jiayeli.service.TestSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/test")
 public class TestService {
 
     @Autowired
     private DiscoveryClient discoveryClient;
+
+    @Autowired
+    private TestSer testSer;
 
     @RequestMapping("/getInstance")
     @ResponseBody
@@ -26,5 +26,12 @@ public class TestService {
             return list.get(0).getUri().toString();
         }
         return null;
+    }
+
+    @GetMapping("getList")
+    @ResponseBody
+    public List<String> getList() {
+        System.out.println("provide");
+        return testSer.getList();
     }
 }
