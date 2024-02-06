@@ -10,7 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  *
  */
 @SpringBootApplication
-//@EnableDiscoveryClient
+//开启feign客户端
 @EnableFeignClients
 public class Application
 {
